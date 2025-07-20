@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cycle Tracker - FemCare</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script
+      src="{{ url_for('static', filename='js/tracker.js') }}"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Menstrual Cycle Tracker</h2>
+
+      <form method="POST" action="/tracker">
+        <label>Last Period Date:</label><br />
+        <input type="date" name="last_period" required /><br />
+
+        <label>Average Cycle Length (days):</label><br />
+        <input type="number" name="cycle_length" value="28" required /><br />
+
+        <h3>Symptoms:</h3>
+        <label
+          ><input type="checkbox" name="symptoms" value="cramps" />
+          Cramps</label
+        ><br />
+        <label
+          ><input type="checkbox" name="symptoms" value="acne" /> Acne</label
+        ><br />
+        <label
+          ><input type="checkbox" name="symptoms" value="bloating" />
+          Bloating</label
+        ><br />
+        <label
+          ><input type="checkbox" name="symptoms" value="mood_swings" /> Mood
+          Swings</label
+        ><br />
+
+        <button type="submit">Predict Next Period</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result">
+        <p><strong>Predicted Next Period:</strong> {{ prediction }}</p>
+        <p><strong>Logged Symptoms:</strong> {{ logged_symptoms }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Diet Plan - FemCare</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Get Your Personalized Plan</h2>
+      <form method="POST" action="/diet">
+        <label>What are your common symptoms?</label><br />
+        <select name="symptom">
+          <option value="insulin">Weight gain / Insulin resistance</option>
+          <option value="inflammation">Bloating / Inflammation</option>
+          <option value="hormonal">
+            Mood swings / Irregular periods
+          </option></select
+        ><br />
+        <button type="submit">Get Plan</button>
+      </form>
+
+      {% if plan %}
+      <div class="result">
+        <h3>Your Recommended Plan:</h3>
+        <p>{{ plan['diet'] }}</p>
+        <p>{{ plan['workout'] }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
